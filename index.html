@@ -2457,7 +2457,105 @@ button.fancybox-button.fancybox-close-small {
 </div>
 <!-- /ko -->
 <!-- /ko -->
+<div class="scs-hidden" data-bind="scsRenderStatus: {&#39;id&#39;: id, &#39;status&#39;: &#39;complete&#39;}"></div></scs-button></div></div><div class="content__rota"><div class="in_rotador"><scs-title params="{ scsComponent: { &#39;renderMode&#39;: mode, &#39;parentId&#39;: id, &#39;id&#39;: &#39;stitle&#39;, &#39;data&#39;: titleData } }" class="title__rotador"><!-- ko if: computedVisible -->
+<div data-bind="attr: {&#39;class&#39;: computedStyleClass, &#39;style&#39;: encodeCSS(computedWrapperStyle) }" class="scs-title scs-component scs-title-default-style" style="margin-top:5px;margin-right:5px;margin-bottom:5px;margin-left:5px;">
+	<div class="scs-component-content" data-bind="scsCompSetupLightbox, attr: { &#39;style&#39;: encodeCSS(computedContentStyle)}" style="text-align:left;width:100%;">
+		<!-- ko if: wrapperTag === 'h1' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h2' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h3' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h4' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h5' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h6' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'p' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'span' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'div' -->
+		<div data-bind="&#39;html&#39;: viewUserText, &#39;css&#39;: computedTextStyleClass, attr:{&#39;style&#39;: encodeCSS(computedStyle)}, scsRenderAsyncItems: true" class="scs-title-text" style=""><p>¡Gane con sus BN Tarjetas!</p></div>
+		<!-- /ko -->
+	</div>
+</div>
+<!-- /ko -->
+<div class="scs-hidden" data-bind="scsRenderStatus: {&#39;id&#39;: id, &#39;status&#39;: &#39;complete&#39;}"></div></scs-title><scs-title params="{ scsComponent: { &#39;renderMode&#39;: mode, &#39;parentId&#39;: id, &#39;id&#39;: &#39;hashtag&#39;, &#39;data&#39;: titleData } }" class="hash"><!-- ko if: computedVisible -->
+<div data-bind="attr: {&#39;class&#39;: computedStyleClass, &#39;style&#39;: encodeCSS(computedWrapperStyle) }" class="scs-title scs-component scs-title-default-style" style="margin-top:5px;margin-right:5px;margin-bottom:5px;margin-left:5px;">
+	<div class="scs-component-content" data-bind="scsCompSetupLightbox, attr: { &#39;style&#39;: encodeCSS(computedContentStyle)}" style="text-align:left;width:100%;">
+		<!-- ko if: wrapperTag === 'h1' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h2' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h3' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h4' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h5' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h6' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'p' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'span' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'div' -->
+		<div data-bind="&#39;html&#39;: viewUserText, &#39;css&#39;: computedTextStyleClass, attr:{&#39;style&#39;: encodeCSS(computedStyle)}, scsRenderAsyncItems: true" class="scs-title-text" style=""><p>Cumpla sus deseos 2026 con ¢500mil mensuales x un año.</p></div>
+		<!-- /ko -->
+	</div>
+</div>
+<!-- /ko -->
+<div class="scs-hidden" data-bind="scsRenderStatus: {&#39;id&#39;: id, &#39;status&#39;: &#39;complete&#39;}"></div></scs-title><scs-button params="{ scsComponent: { &#39;renderMode&#39;: mode, &#39;parentId&#39;: id, &#39;id&#39;: &#39;cta&#39;, &#39;data&#39;: titleData } }" class="link_verde scs-responsive"><!-- ko if: computedVisible -->
+<!-- ko if: hasButtonText || (isCobrowse && isCobrowseEnabled) -->
+<div data-bind="attr: {&#39;class&#39;: computedStyleClass, &#39;style&#39;: encodeCSS(computedWrapperStyle)}" class="scs-button scs-component scs-button-default-style" style="text-align:left;margin-top:5px;margin-right:5px;margin-bottom:5px;margin-left:5px;">
+	<div class="scs-component-content" data-bind="scsCompSetupLightbox, attr: { &#39;style&#39;: encodeCSS(computedContentStyle)}" style="width:auto;">
+		<!-- ko ifnot: isCobrowse -->
+		<!-- ko if: !hasLink--><!-- /ko -->
+		
+		<!-- ko if: hasLink -->
+		<!-- ko if: linkTypeAction --><!-- /ko -->
+		
+		<!-- ko if: linkTypeFile --><!-- /ko -->
+		
+		<!-- ko if:  linkTypeFilePreview --><!-- /ko -->
+		
+		<!-- ko if: linkTypeItem --><!-- /ko -->
 
+		<!-- ko if: linkTypeMap --><!-- /ko -->
+
+		<!-- ko if: linkTypeOther -->
+		<a class="scs-button-button" data-bind="&#39;attr&#39;: {&#39;id&#39;: viewId, &#39;title&#39;: title, &#39;style&#39;: encodeCSS(computedStyle), &#39;href&#39;: scsURL(href), &#39;target&#39;: target, &#39;aria-label&#39;: ariaLabelValue}" id="scs-button-d58ff4e2-d576-42c4-b9ac-f7137e06eb03cta" title="Conozca más aquí" style="" href="https://bncontacto.fi.cr/lampara-deseos-th" target="_self">
+			<span class="scs-button-text" data-bind="&#39;text&#39;: computedText">Conozca más aquí</span>
+		</a>
+		<!-- /ko -->
+		<!-- /ko -->
+		<!-- /ko -->
+		
+		<!-- ko if: isCobrowse && isCobrowseEnabled--><!-- /ko -->
+	</div>
+</div>
+<!-- /ko -->
+<!-- /ko -->
+<div class="scs-hidden" data-bind="scsRenderStatus: {&#39;id&#39;: id, &#39;status&#39;: &#39;complete&#39;}"></div></scs-button></div></div><div class="content__rota"><div class="in_rotador"><scs-title params="{ scsComponent: { &#39;renderMode&#39;: mode, &#39;parentId&#39;: id, &#39;id&#39;: &#39;stitle&#39;, &#39;data&#39;: titleData } }" class="title__rotador"><!-- ko if: computedVisible -->
+<div data-bind="attr: {&#39;class&#39;: computedStyleClass, &#39;style&#39;: encodeCSS(computedWrapperStyle) }" class="scs-title scs-component scs-title-default-style" style="margin-top:5px;margin-right:5px;margin-bottom:5px;margin-left:5px;">
+	<div class="scs-component-content" data-bind="scsCompSetupLightbox, attr: { &#39;style&#39;: encodeCSS(computedContentStyle)}" style="text-align:left;width:100%;">
+		<!-- ko if: wrapperTag === 'h1' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h2' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h3' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h4' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h5' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h6' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'p' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'span' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'div' -->
+		<div data-bind="&#39;html&#39;: viewUserText, &#39;css&#39;: computedTextStyleClass, attr:{&#39;style&#39;: encodeCSS(computedStyle)}, scsRenderAsyncItems: true" class="scs-title-text" style=""><p>Pagar el marchamo patrocina su pasión</p></div>
+		<!-- /ko -->
+	</div>
+</div>
+<!-- /ko -->
+<div class="scs-hidden" data-bind="scsRenderStatus: {&#39;id&#39;: id, &#39;status&#39;: &#39;complete&#39;}"></div></scs-title><scs-title params="{ scsComponent: { &#39;renderMode&#39;: mode, &#39;parentId&#39;: id, &#39;id&#39;: &#39;hashtag&#39;, &#39;data&#39;: titleData } }" class="hash"><!-- ko if: computedVisible -->
+<div data-bind="attr: {&#39;class&#39;: computedStyleClass, &#39;style&#39;: encodeCSS(computedWrapperStyle) }" class="scs-title scs-component scs-title-default-style" style="margin-top:5px;margin-right:5px;margin-bottom:5px;margin-left:5px;">
+	<div class="scs-component-content" data-bind="scsCompSetupLightbox, attr: { &#39;style&#39;: encodeCSS(computedContentStyle)}" style="text-align:left;width:100%;">
+		<!-- ko if: wrapperTag === 'h1' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h2' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h3' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h4' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h5' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'h6' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'p' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'span' --><!-- /ko -->
+		<!-- ko if: wrapperTag === 'div' -->
+		<div data-bind="&#39;html&#39;: viewUserText, &#39;css&#39;: computedTextStyleClass, attr:{&#39;style&#39;: encodeCSS(computedStyle)}, scsRenderAsyncItems: true" class="scs-title-text" style=""><p>El BN le premia con dos experiencias a la fiesta del fútbol y mucho más.</p></div>
+		<!-- /ko -->
+	</div>
+</div>
+<!-- /ko -->
 <div class="scs-hidden" data-bind="scsRenderStatus: {&#39;id&#39;: id, &#39;status&#39;: &#39;complete&#39;}"></div></scs-title><scs-button params="{ scsComponent: { &#39;renderMode&#39;: mode, &#39;parentId&#39;: id, &#39;id&#39;: &#39;cta&#39;, &#39;data&#39;: titleData } }" class="link_verde scs-responsive"><!-- ko if: computedVisible -->
 <!-- ko if: hasButtonText || (isCobrowse && isCobrowseEnabled) -->
 <div data-bind="attr: {&#39;class&#39;: computedStyleClass, &#39;style&#39;: encodeCSS(computedWrapperStyle)}" class="scs-button scs-component scs-button-default-style" style="text-align:left;margin-top:5px;margin-right:5px;margin-bottom:5px;margin-left:5px;">
