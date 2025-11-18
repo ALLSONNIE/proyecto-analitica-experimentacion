@@ -1,0 +1,924 @@
+.ac-columnSet {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.chat-app {
+    font-size: 16px;
+    line-height: 1.25;
+    font-family: "Roboto", sans-serif;
+    height: 610px;
+    width: 370px;
+    position: fixed;
+    bottom: 32px;
+    right: 100px;
+    color: #141e30;
+    z-index: 9999999999;
+}
+
+.chat-app {
+    height: 0;
+}
+
+.chat-app.is-active{
+    height: auto;
+}
+
+.chat-app_toggle.toggle {
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+
+.ac-input.ac-multichoiceInput.ac-choiceSetInput-compact.ac-input-required {
+    color: #000;
+}
+
+
+.chat-app select{
+     color: #000;   
+}
+
+
+    .chat-app .title {
+        font-size: 1em;
+        font-family: "Raleway", sans-serif;
+        font-weight: 600;
+        color: rgba(19, 61, 141);
+        left: 15px !important;
+        position: relative !important;
+    }
+
+    .chat-app .subtitle {
+        font-size: 1em;
+        font-family: "Raleway", sans-serif;
+        font-weight: 500;
+    }
+
+    .chat-app:not(.is-active) .chat-app_toggle:hover {
+        animation: 0.5s blob linear;
+    }
+
+.chat-app_toggle.toggle{
+    z-index: 5 !important;
+    position: absolute !important;
+    bottom: 0.75em !important;
+    right: 0.75em !important;
+    height: 64px !important;
+    width: 64px !important;
+    transform: scale(0.83) !important;
+    background: linear-gradient(to right, #00c6ff, #0072ff) !important;
+    border-radius: 100% !important;
+    transition: all 0.3s !important;
+    box-shadow: 0 10px 20px rgba(0, 198, 255, 0.4) !important;
+}
+
+    .chat-app_toggle:hover {
+        cursor: pointer;
+        transform: none;
+    }
+
+    .chat-app_toggle .icon {
+        z-index: 2;
+        color: white;
+        font-size: 1.5em;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all cubic-bezier(0.72, 0.17, 0.36, 1.03) 0.4s;
+    }
+
+    .chat-app_toggle:before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        border-radius: 100%;
+        border: 2px solid #00c6ff;
+        opacity: 0;
+    }
+
+    .chat-app_toggle:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: linear-gradient(to right, #00cdac, #00ae92);
+        border-radius: 100%;
+        transition: all 0.3s;
+        opacity: 0;
+    }
+
+.chat-app_box {
+    border-radius: 16px 16px 16px 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+}
+
+.chat-app_header {
+    background-color: rgb(176, 188, 34);
+    color: white;
+    position: relative;
+}
+
+    .chat-app_header .branding {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 0.5em 0.5em;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
+
+.chat-app_head .close {
+    height: 1.5em;
+    width: 1.5em;
+    background: rgba(19, 61, 141);
+    position: absolute;
+    top: 0em;
+    right: 1em;
+    border-radius: 100%;
+    z-index: 2;
+    transition: all 0.3s;
+    opacity: 0.7;
+}
+
+.chat-app_header .fa-headphones {
+    color: rgba(19, 61, 141);
+    border-radius: 100%;
+    right: 2.5em !important;
+    position: absolute;
+    width: 1.5em;
+    height: 1.5em;
+    top: 1rem;
+    z-index: 2;
+    transition: all 0.3s;
+    opacity: 0.7;
+    font-size: 28px;
+}
+
+    .chat-app_header .fa-headphones:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+.chat-app_head .close:after,
+.chat-app_head .close:before {
+    content: "";
+    height: 2px;
+    width: 1em;
+    position: absolute;
+    left: 0.25em;
+    top: calc(50% - 1px);
+    background: white;
+    transform: rotate(45deg);
+}
+
+.chat-app_head .close:before {
+    transform: rotate(-45deg);
+}
+
+.chat-app_head .close:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+.chat-app_header .topmenu {
+    height: 1.5em;
+    width: 1.5em;
+    position: absolute;
+    top: 0.6em;
+    right: 1em;
+    z-index: 2;
+    transition: all 0.3s;
+    opacity: 0.8;
+}
+
+    .chat-app_header .topmenu:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+.chat-app_header .avatar {
+    margin-right: 1em;
+    position: relative;
+    width: 45px;
+    height: 45px;
+}
+
+    .chat-app_header .avatar img {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+        border-radius: 100%;
+        box-shadow: 0 5px 10px rgba(20, 30, 48, 0.2);
+    }
+
+    .chat-app_header .avatar.is-online:after {
+        content: "";
+        display: block;
+        height: 0.75em;
+        width: 0.75em;
+        position: absolute;
+        bottom: 0.2em;
+        right: 0.2em;
+        background: #00cdac;
+        z-index: 2;
+        border-radius: 100%;
+        box-shadow: 0 0 0 2px white;
+    }
+
+.chat-app_header .content {
+    width: calc(100% - 48px - 1em);
+}
+
+.chat-app_content {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow: auto;
+}
+
+    .chat-app_content::-webkit-scrollbar {
+        width: 0.5em;
+        background-color: transparent;
+    }
+
+    .chat-app_content::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #ededed;
+    }
+
+    .chat-app_content .messages {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        overflow: auto;
+        padding: 0 1em;
+        position: absolute;
+        padding-bottom: 1em;
+    }
+
+    .chat-app_content .message {
+        width: calc(100% - 2em);
+        padding: 0.75em;
+        background: white;
+        margin-top: 0.25em;
+        border-radius: 16px;
+        margin-left: 2em;
+        background: linear-gradient(to right, #00c6ff, #0072ff);
+        color: white;
+        position: relative;
+        opacity: 0;
+        transform: scale(0.8);
+        transform-origin: 100% 100%;
+        animation: message-pop cubic-bezier(0.71, 0.15, 0.46, 1.4) 0.5s;
+        animation-fill-mode: forwards;
+        animation-delay: 1.2s;
+    }
+
+        .chat-app_content .message:after {
+            content: "";
+            display: block;
+            height: 1em;
+            width: 1em;
+            position: absolute;
+            bottom: 0.75em;
+            right: -1em;
+            clip-path: polygon(0 0, 0% 100%, 75% 100%);
+            background: #0072ff;
+            transform: skewY(15deg);
+        }
+
+        .chat-app_content .message.reply {
+            margin-left: 0;
+            margin-right: 2em;
+            background: #ededed;
+            color: #141e30;
+            transform-origin: 0 100%;
+        }
+
+            .chat-app_content .message.reply:after {
+                right: unset;
+                left: -1em;
+                clip-path: polygon(100% 0, 25% 100%, 100% 100%);
+                background: #ededed;
+                transform: skewY(-15deg);
+            }
+
+.chat-app_footer {
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 1.5em;
+    padding-top: 0.75em;
+    position: relative;
+}
+
+    .chat-app_footer .tools {
+        display: flex;
+        margin-bottom: 0.75em;
+    }
+
+        .chat-app_footer .tools .copyright {
+            margin-left: auto;
+            display: block;
+            color: #a0a0a0;
+            font-size: 0.75em;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.5em 1.5em;
+            text-align: right;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+        }
+
+        .chat-app_footer .tools .button-icon {
+            margin-right: 0.25em;
+            background: white;
+            width: 2em;
+            height: 2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100%;
+            transition: all 0.3s;
+            color: #a0a0a0;
+            position: relative;
+        }
+
+            .chat-app_footer .tools .button-icon i {
+                position: relative;
+                z-index: 2;
+            }
+
+            .chat-app_footer .tools .button-icon:after {
+                display: block;
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(to right, #00c6ff, #0072ff);
+                z-index: 1;
+                opacity: 0;
+                transition: all 0.3s;
+                border-radius: 100%;
+            }
+
+            .chat-app_footer .tools .button-icon:hover,
+            .chat-app_footer .tools .button-icon:focus {
+                cursor: pointer;
+                box-shadow: 0 5px 10px rgba(0, 198, 255, 0.4);
+                color: white;
+                transform: scale(1.1);
+            }
+
+                .chat-app_footer .tools .button-icon:hover:after,
+                .chat-app_footer .tools .button-icon:focus:after {
+                    opacity: 1;
+                }
+
+input[data-id="webchat-sendbox-input"] {
+    height: 2.5em !important;
+    width: 50% !important;
+    background: white !important;
+    border: solid 1px #a0a0a0 !important;
+    border-radius: 10px !important;
+    padding: 1em 1em !important;
+    font-size: 1em !important;
+    transition: all 0.3s !important;
+}
+
+
+    input[data-id="webchat-sendbox-input"]:focus {
+        outline: none !important;
+        box-shadow: 0 10px 20px rgba(0, 205, 172, 0.4) !important;
+        border-color: #c8d602 !important;
+        background: white !important;
+    }
+
+
+.webchat__send-box__main > button > svg:hover {
+    outline: none !important;
+    box-shadow: 0 10px 20px rgb(0 205 172 / 40%) !important;
+    border-color: #c8d602 !important;
+}
+
+.chat-app .chat-app_box {
+    transition: all cubic-bezier(0.71, 0, 0.23, 1.38) 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform-origin: 100% 100%;
+    transform: rotate(-3deg) scale(0.8);
+}
+
+.chat-app .chat-app_header .avatar {
+    transition: all 0.4s;
+    opacity: 0;
+    transform: scale(0.6);
+    transition-delay: 0.2s;
+}
+
+.chat-app .chat-app_header .content {
+    transition: all 0.4s;
+    opacity: 0;
+    transform: scale(0.9);
+    transition-delay: 0.3s;
+}
+
+.chat-app .icon.send {
+    opacity: 0;
+    transform: translateY(-100%) scale(0.5);
+}
+
+.chat-app .icon.open {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.chat-app .chat-input {
+    transition: all 0.4s;
+    opacity: 0;
+}
+
+.chat-app.is-active .chat-app_box {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: unset;
+    transform: none;
+}
+
+.chat-app.is-active .chat-app_header .avatar,
+.chat-app.is-active .chat-app_header .content {
+    opacity: 1;
+    transform: none;
+    width: 200px !important;
+}
+
+.chat-app.is-active .icon.send {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.chat-app.is-active .icon.open {
+    opacity: 0;
+    transform: translateY(100%) scale(0.5);
+}
+
+.chat-app.is-active .chat-app_toggle:before {
+    animation: chat-bubble cubic-bezier(0.15, 0.4, 0.15, 1) 0.7s;
+}
+
+.chat-app.is-active .chat-app_toggle:after {
+    opacity: 1;
+}
+
+.chat-app.is-active .chat-input {
+    opacity: 1;
+}
+
+.webchat__icon-button {
+    right: 0.3em !important;
+    fill: rgb(238, 236, 249) !important;
+}
+
+.webchat__microphone-button.webchat__microphone-button--dictating .webchat__microphone-button__button .webchat__microphone-button__icon {
+    fill: rgb(176, 188, 34) !important;
+    top: -2px !important;
+}
+
+.webchat__send-box .webchat__send-box__dictation-interims {
+    color: white !important;
+    opacity: 0.8 !important;
+}
+
+.webchat__send-box__main {
+    background-color: rgb(19, 61, 141) !important;
+}
+
+.webchat__bubble__nub {
+    display: none;
+}
+
+.webchat__bubble.webchat__bubble--from-user .webchat__bubble__content {
+    border-bottom-right-radius: 1px !important;
+    border-top-right-radius: 15px !important;
+}
+
+.webchat__bubble:not(.webchat__bubble--from-user) .webchat__bubble__content {
+    border-bottom-left-radius: 1px !important;
+    border-top-left-radius: 15px !important;
+}
+
+.webchat__initialsAvatar {
+    background-color: transparent !important;
+}
+
+.webchat__defaultAvatar {
+    height: 55px !important;
+    width: 50px !important;
+}
+
+.webchat__imageAvatar {
+    height: 50px !important;
+}
+
+.ac-textRun {
+    color: rgb(19, 61, 141) !important;
+}
+
+.ac-input {
+    border-radius: 10px !important;
+    font-family: Arial, sans-serif, "Comic Sans MS";
+}
+
+.ac-multichoiceInput {
+    border-radius: 10px !important;
+    font-family: Arial, sans-serif, "Comic Sans MS";
+}
+
+.ac-choiceSetInput-compact {
+    border-radius: 10px !important;
+    font-family: Arial, sans-serif, "Comic Sans MS";
+}
+
+.ac-input-required {
+    border-radius: 10px !important;
+    font-family: Arial, sans-serif, "Comic Sans MS";
+}
+
+
+@media screen and (max-width: 700px) {
+    .chat-app .chat-app_box {
+        position: fixed;
+        top: 5%;
+        left: 0;
+        width: 100%;
+        height: 95%;
+        border-radius: 0;
+    }
+
+    .chat-app .chat-app_toggle {
+        position: fixed;
+        bottom: 0.75em;
+        right: 0.75em;
+    }
+
+    .chat-app {
+        height: 0% !important;
+        width: 100%;
+        position: fixed !important;
+        bottom: 0px !important;
+        right: 100px !important;
+    }
+
+    .chat-app.is-active{
+        height: 100% !important;
+    }
+
+    .chat-app_head {
+        position: fixed !important;
+        width: 100% !important;
+        height: 5% !important;
+        top: 0% !important;
+        right: 0% !important;
+    }
+
+        .chat-app_head .close {
+            top: 20% !important;
+        }
+}
+
+@keyframes chat-bubble {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.6);
+    }
+}
+
+@keyframes message-pop {
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes blob {
+    0% {
+        border-radius: 100% 100% 100% 100%;
+    }
+
+    25% {
+        border-radius: 60% 95% 60% 95%;
+    }
+
+    50% {
+        border-radius: 90% 65% 90% 65%;
+    }
+
+    75% {
+        border-radius: 80% 98% 80% 98%;
+    }
+
+    100% {
+        border-radius: 100% 100% 100% 100%;
+    }
+}
+
+
+.hide {
+    display: none;
+}
+
+div[role="group"][dir="ltr"] {
+    background-color: #f2f4fa !important;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWwAAAMGCAYAAADWb76sAAAACXBIWXMAAAsSAAALEgHS3X78AAAgAElEQVR4nO3di5KiSvfm4QQRy+rz/5v7nbm1uZ/5oo9Vlgo68SJUpRRYoqCs5PdEdOy9e3fXSX1ZLlZmRn/+rf+Pc+5/O1xsv3duneXueZu73W5/9GHiOHKf08SlScwPGMA1/m/Cj+96UeTcw3xW/HrZHge3/vnnZevms9h9XiRuFke2v1kAd0PZ1zOF9o9l6pbpzDkvm7f5zv1cbdxqm4fxjQK4OQJ7AKq4P6VJEdxHrZC9c0/rrKi49/vbfT0AwkBgD0jtj68Pc/dtOS962ZVNtnP/fV67bEdqAzgfgX0D6l83Vdu/njdFzxsAzkFg34jaJKq2dePR723/W2fFLwD4CIF9Y7op+X2ZHk2LqMqmrw3gIwT2HSRxVIS2WiUV9bV/rTaENoBWBPadqEWim5GquCv5bk9oA2hFYN+ZetqENoBzENgjoNAubkaWCG0ATQjskVCVXQ/tv+vtxH8qAHwE9ogotIsl7SXdiGTkD0CFwB4ZLWn3e9oa+WNxDQBHYI+TWiP+qkhV2do8CsC0Edgj9WUxP1pc85uFNcDkEdgjpTntLw/zt2Xse1eshgQwXQT2iGlF5NfF/PULVFuE/bSB6SKwR069bP8m5NMmK0b+AEwPgW2AJkde99PeO0b9gIkisA0o+tneohq1Rhj1A6aHwDZCO/v5rZF/m4ypEWBiCGxD1Brxp0aet7RGgCkhsA1Ra+Rz+tYa0cQINyCB6SCwjVFbxL8ByZgfMB0EtkF+lf1ClQ1MBoFtkGaz/ePFqLKBaSCwjVp4m0O9ZDkTI8AEENhG1XvZCm0AYSOwDXv05rJpiwDhI7ANWySz17ns3W7PntlA4AhswzSX/ZC8VdnrjMAGQkZgG3d0nBh9bCBoBLZx2jPbv/m4ocoGgkVgByD1ZrI39LGBYBHYAfDbIgQ2EC4COwBqi/jTIhlL1YEgEdiB8NsijPcBYSKwA0FgA+EjsAOReIFNSwQIE4EdiHofmy1XgfAQ2AGZx28P547t+4DgENgBmVULaBjvA4JEYAfED2wKbCA8BHZAEi+w6WED4SGwAxJHXmBTYgPBIbAD4rdEdlTYQHAIbAAwgsAOzJwFNECwCOyA7eljA0EhsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIwgsAHACAIbAIxIeKCAdvluX/za7nZuFkVuFkduPgu7ztnmO7fJd26/P3z/FX3v1fefxNG7v4fhEdhAg022c0+b7CiwXkXOPSQz9ylNXBRIbimk19nOvWzzd//v7c+8/XscR26RxMXPYUZ43wyBDXhUVSqoTwWX27vi/79kufu+TE1Xm7og/VtnRWB3sdvt3WqTu9U2d8v5zD3O+7t46THIdoevZ+N9XfWKf4JmBDbg+fOyPT+89s79Wm3MhrYuOv82WfF9XGzviuDWO5IvD/POP4dst3dZviv+WbWervp6AhZFLiKwgZIq666VpsJFIf9jmZpqj6iqPvkuoiOF7TkXryKUy4DWOxTCuRsCGyjfbq8uDDC1B563WdHTtqDvsH7V8o5DIa3Whj7nuS2N6sZuMnv7OPM4DuaewSWiKMoJbEDtgSurPd2w+5S+++3RKXrvQ4R1pQxtvePIyypa7ZJW0SGIFcz6ZzWJgkZ7AhsopySusSt7sGMOm+IGo3rWQ9s793O1ab0A6meUJrFbJLOT7RO8R2ADZUvkWrv93s3ceAPo6dobjF3UPo9C+mE+c+kspoK+AoENTIBu8p1sTQxEIa2xP0K6HyxNByZg0L71CVTU/SKwgfIt+7WSeLwvp+Km6h1srrw3gGMENuBcscz6GrqJNtaRs+KG6p3mne91oQgVgQ2Uc7/XVNnq047VXavc/aF/jn4Q2EBJS6svoRtrY97Br48JmOs+P4HdFwIbKGkm+POi2+CUgnrsKxzvvWESFXZ/GOsDPKqWk1lc7A+y+yBolunMzHL0e9pRYfeGZxtQo0r7fx7TYhRuU25UVIV31etmtvh88ZQ3AOkZgQ20ULX9MOKbiefSheVOY9gFlp/3hx42ELh7F7gRFXZvCGwgcOk9J1giKuw+EdhA4O45cnjXi0WA+GkCE3CvXjyB3S9+msAEXLv0/hJxuaUqevyZvvsdAMFRW+TWrZFHwrp3BDYwEZ86ruK8xozqehAENjARmta4SWhHl+/LgtMIbGBCHpKZG/oUs6+LOaN8AyGwgQn5u94Ouje2Ns9K73CDcyr4yQIToTMd/XMdew3WyLnvjyl964GxlwgwAdow74+q65LC+uvDvNjY6u/L9qotWBXS2rWQFejDI7CBCXjaZG+tEN0UXBxuCqrX/KPcmXCd7Q7HiZ0jOvTD2bXwtghsIHAKYf/UdN0UrFfD1c6EqrS35ZayTVV3MovcPI7pU98JgQ0E7nnzFtZaPHMqbFUtz2L60GNFYAMd7YuDZXeth9vOoqg4tWYMo22qrP02R9cj0DAuPHrAGdQeeMnyYsqiqVXQKDpsfqRe76mqdkjPXivkgX6zeQQ2cIKq09U2PxqHO9v+bZROGyFpA6bH+e2mKVRdv55LGTnOnwwAjyDQQG0PTVa89HS2loJztTlMYnxOb7O4xK+uNc3B2J19BDZQo6r698swKwIV3DqRfejZZVX1fnWtyh72MZsDeFRR/151D+u4Y29Yn+fXalNU8kNY+b3rhOo6FFx2gZJC9N86+/DHoepYEyAakWu6iacKXRMka7/KbaCblz9XG/djmfYaqNUsdWXJcvFgENjAOWEdHYLvnJuG1WEBn9JDeGsOum0FoQJdlfb3HkPbr67VK2+6qMAmWiKYPIXpqbBW6P3ncXFRz1nB/W05L/btaNvWNC/72n3R+GGl2E4VwSCwMWnqIf8+EZba8F9he231q9BX66Ot2tVFo9jv40rF+KG3ZwhLyMPCo4lJO9oUqUarAvvs/yqsv58IbY39XbNrnvirL6muw0NgY7K0wVHbnLUq6yH2dlalfiq0r62yj9oh3GwMDoGNyWoLa7URhpysiE6ceaiWRnZhlV38vfKvasyQY7rCQ2BjkvK26trbK3pICtNl2nxRaPy6zrD2qmvtYYLw8Khiktp22rvlEu5i9WHD5/LbGl1k+VtlTmCHiUcVk9RYxd54CXcUtSxqKTeN6sqf9Z4T2EHiUcXkaJSvaRrjHku42yY52t4BtPHDWjc0WYoeJgIbk6PDB5rco41wOOHlfbo2XVBO8W9UUl2Hi0cWk9NWvd4r6Jo+b9tS9jZ+wDddABCG988UYIoid7c2Qh8B6wc243zhIrAxOU1bmuok8HtpC9gubRFuOE4Djywm59rl37eya7qyNDj6Y83Zj0AQ2JgcKz3e6MwejX8T9Z7vFDA8Hl1MTlMOblsmR26hbSl6W6vklKbvDeEgsAF3WKwy1HFdH+lzhz4mRMJGYGNy2uatu47S9aXp83LjEE14VmBykpY+b9t89pDaVl1SKaNJ8zMXCJj6vE2BeOmmS9do+5yXzlK3vXtAGHh0MUmNLYd9y6ZQA1q1fL5Fyx4jTZoqdISp4VkLhK9xlzzn3PM2v9nNR4X1riFsHzpu8Xqvm6W4PQIbk6SWSFOVrQDt4zDcj+QnPs+Cg3PRgmcGJuvxxIkvQ7ZGVBH/0UntDZWxLiJNFxLAEdiYMgVj2lLN/ltnrQtarqXKuq3vrMN/gTbNz1ZgIj6lzcd0ya/VptdKW5X179W29WOqd81OeziFwMakqZf9te3Q3f2h0tava2/saXHMz9WmcZGMK7+Oz1TX+ADPEEye2iKqbtsqX/2+FtU8zmfFn+tCrY/VRz3xyLmvDy0XDcBDYAPOvVa3bcGq6RFV2hr70+IUTXK03RxUSKuSVsh/eJhu5Nz3Zdq4kAeoI7CB0keh7crgftm9VcyxzmT0hqbbWh5N9HdVWdO3xrkIbMCj0FaA/tOM9Bl9awX47pw/WKPqXGHNdqjogsAGatSnVqCqBdL7Dn7RYTKlbaUlcAqBDTRQT/nbcl70oE/NTZ8tcu4hmRVhTVWNSxHYwAmaIEmTtKi019nusLteh+xW8KtiV1gT1LgWgQ2coVoyrh63VkBm+c7l+31Refsz2gpoBbMmSbTvNiGNPhHYQEe6KZnE9KBxe82DpACA0SGwAcAIAhsAjCCwAcAIAhsAjCCwAcAIAhsAjCCwAcAIAhsAjCCwAcAIAhsAjCCwAcAIAhsAjCCwAcAIAhsAjCCwAcAIAhsAjCCwAcAIAhsAjCCwAcAIAhsAjCCwAcAIAhsAjCCwAcAIAhsAjEh4oADbFknskllUfA9xFPFoBozABox7mM94CCeClggAGEFgByzi7TEQlORpk/F+KiDb3e71m1lnuVt3/NZmUeRm8SHoFfhJTOgDY5GsNjmBHajVJu/nG4ucm8dxEeT6NZ/FBDlwB9x0xMf2zm3zndvW8r8I7lnkFsmMAAduIFmms57KMNzbfu/cS5mqcRwV415d6WPku33xt/L93u3Kf29ShXhRyUfOPSQzl85il17weQF8LPmUJgR2IF68EljB+Snt5w1Uttu7/X7vNvmuCHP997sgLy8WxddQhrfGzai8gf7QEgmIKuJKnwMih9A99K4rCm5V2ArvlywvAvuVF976O6r0mRUGrkdgByTL31IznQ3bljjcgDyE8OdFUoT3Otu9C+9D22Tnnre5e5zPCG7gCgR2QPyRvlsvUVYlrV8K700Z3PpnRS2Uf+uM4AauQGAHorhRWFW2kXudpb4H3XTUL31NK7VGvKq7Cm79vsJ9PvA7ASAkvFoCobZDZeh2yLl00VAo/+dx4ZbprLiQVBTmv1db9+dl6/btgygAPAR2IDJvamNsVau6M5pYUXDXWyFqm/z3eX3UPgHQjMAORNF2KI21zaDgVsX94zE9/hr3rqi0qbaB0wjsAGS1/vXYZ5/VKvm2nLuvD/OjNklVbfvtHQBvCOwA+AtmtGDFCt2YVJvkaGXk3hW97VV9HTwAAjsEmxHecDyX2iSqtNUq8avtp3VWTJPQIgHeENjGHS0Tj5zZfTx0M/L7Mj0aR9Q7h1+rDaENlAhs46y2Q5qo967Q9idJNP5HaAMHBLZx/nSItXZIk2qSpJjbLim0dTMyO7FzIDAFBLZhRXVdZpi2Uw1pW1PNbRd97creFZU2oY0pI7ANe/baIZfsfT12ao00hTbtEUwVgW2UZpX9Pakf52FuC0NoA28IbKOevfMaFWohH5BeD21uRGKqCGyDqj2mK8sJbFXaFNpPm+zdnwNCRmAbVK+u77mV6i3pe/WnR3TTlRWRmBIC2xiF1NSqa5+mR/w5ba2IZO8RTAWBbYh6tv5kyJSqa59C2/++f7PLHyaCwDbkeZsdLUPv61R0a6r9R173Htk793e9neTPAtNCYBuhBSMrr3etsA55MuQjqrC/Luavf0pbs9LPRug409GIvy9vFaTCqo/etS4CWb5zea2foCXuOsR37O0WrexUW6jaT0VTI/rap9gmwjQQ2AZom9HcWyTz5WF+8RetG3Tr8lRz19L3XblDAGq5u1ZQalOpsYag3mlsqkVE+0Nof73i5wOMGYE9cgpYf0c+jbVdcqKMPo7GAbtMVOzKNox+qZIdYxtGX8+XRVIceuDK1oi+R05jR4h4Vo+YOhW/vVaIQuiSG42q0BVo14y/6aIx1sNy9XPxN776u2ZBDcJEYI/Uvtwzwz+r8WhPjTPoY/x83hxV6FcpD8vt7eP1qLiQldW/3hmM8WsErkVgj5R6sX7fWhMRXfrIVeDnA2xHqop9bIFYvxH7b8PxYggPgT1C9UBU37rrXteqhIcI68oYQ7vYsdCbzdbcOhASbjqOjELwpbaasWvfWtX5LZZrq4qdj2iMTjcgVWVX8+qahvmUvvtj5umdwzrLi7FMXZRfH+vIuXl8eDzSWl8fYSCwe6IXjsbLiimF3e6o96wXkV48H80IK6j/eTfM9Ge7hnVeW2AzqP2h0v62HM8YnarsVXkST9XLfghkv5V9ObbYOpK5r3ZyPDyXqrHMqa6IDRGP5JVeX0Rt7YH923aoT17FXB+PawprHUjbdYzu1qv9qu9tLGN09Sr7OZDAViHwR8vvm4K6RTWWqb+r2f1LxkExLrxnuoLekv5cdZvC0J/9WTubsK+wzu80HTG2JeF+L3vntwyM0mOqexJNYa0LZbXtbNtmYNWBD5yHaR8V9oWy8kXQ9CL6yK78uwrles/60rCWzZ2CSRWc3mmMZVGNvg6tzqx+ruplW11IU7+YFzTimSZukTSfNFRcuLP8tTVUKKeG9Nyi0raLCvsC72akL/ogh4/RV1i7MjjvRTfBxsRvg+hnbHHET0VBPax1L+Q/j4uTx8JV9z5+LNPjipvzMM0jsC9QHE3Vx5Pe+xjXhrUr+8n3Mra326oi/bAa2wXlHH9ejreMVUhrn5RznyPVc6oe2hytZheB3dEQfWJVTdeG9ZAz1xY+fxO/yr5Xu+hSeo75p+KrpdN1pasr20N6bjnvuaWPPcbHCx8jsDsa4gabtjK9tv+7433uO6nXt6767FbUn2eXhHWlOPBhcTx6yd7hNhHYHQ3RduBMwmHMjLZF8nJBTKVt+qMLvYuLvY9h7R0HDgjsjoZ4K8nb0+H4q/2sjLXVL+CLnlYs+nut7GoXBdhAYHfAHKs9Gn2rWKkq6ycA9TWSWB/no41mD4HdwX7ET/B7zxmP9XzJIqS8RTTWqso+92lJ4uPnCBW2PQR2B/Un/NjEd1wQMeaFKf7NR2v3C+Ier4T1D1Wv5DF+BHYHg1WRPX3c9I6hOebA9qtUa22tPi8w9e/9ns8XXIZHrKMhtqzs64VzrxegKvsxL3f2fy4W2wB9fc0ZkyHmEdhn0DtHzfFqmfAQb6l7C+za6Nat9DXFMBS/lWWhJVJ/PvR1s7ReYXNQsT1s/tSgmoPdlFuHDlmVKWD73P7zcT57t//EoKJyd7wRK1pZ0dtWAHo8x3LoQpMiSL2vV4tcllc+R+ordDncwKZJBrYq5my3e/13HTigfxand/iHD7SIoqi3iZHPPW8ur/Bf3XDpcdPe3mOkQySq6lrjbLO+bhwMxN9tsNjX+srQru8fQv/apuT//VsHeIhS/1SRVXsPq1/bx5mG+lhDVDrarP7q3QTPoJ/HtZXfrejxqx4uXczG/mXr5+o/v57K49guuVegj+Pv5Nj3uzrcDi2RFtVZhapE9O/1KrLa2+HS0NYL5pr9IU7Ri1qV+5CtEf1stHOcFf7jZ2GcrTgFPn07OefS/ayb9tP+MtDzDsOb5COnCmPmvYKT2eHfFc6aez23v6nA1YfpeoaiXohDn7NXVVBDhHYfW8HeWp/zzLei54gq49f2lkL7eVM8f3Tf4NS3pL+jqry+R7qeF9xstCv5X58Xm6n/EK6hF5X6javayTFNiqOcetjI51z6fAqqrmcBnqIXe5c9mcfCr0qz3M5ony6Mqqz9exIqEPR80/OuKDLKscrqBnnWsgXwkO/qcBs8ej1QAOuFoPDWzcz6GFbVVrkH9ch/xOn1I4nl4bacwH1b1X7WOszg6PHbu3fHy51CWIeBR7BHenHN7xjObXRB+bacFy/4503eLbjL8xFv+c4AtYcgcsXjp6q662lHcXk/gzG+MBDYE6ILybdlfDRjrrfPu4YFFaduuOI+dNEsxv2y/MNTYxTQaTnVhHAQ2BNUTCDEMzMjeXgTla0p/arWE6jdVYX3p0XC4xow3idhEkKcjKhacP4EzJj3dMH1CGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjEh4oIBz/1pmLo4hHNEwzAhsISL7bu9zteUgDFEUuoiUCAEZQYQPGfVokbr+nqg5dFEU5gQ0Yl8TqWdO3noA9LREAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILABgAjCGwAMILAxiTs9zzOsI/AxiRkux0PNMwjsAHACAIbAIwgsAHACAIbAIwgsDEJ2e5tTCSZRTzoMInAxiTsmOtDAAhsTIKf17OIChs2EdiYhNxricxiAhs2EdiYhK23cCaJedrDJp65CF7RDqkK7Mg5OiKwisBG8Pxl6XOqaxjGsxfB2+RvgU3/GpYR2Ahelnsz2AQ2DCOwEbytV2HPZzzlYRfPXgTND+s4jmiJwDQCG0FbZ2+BnVJdwziewQiaX2ET2LCOZzCCpdWN/gpH+tewjmcwgvWS5a/fWprELJiBeck23036aaxlyryQw0T/GqFJfq+2cx7VcoIgOkwRaFY3mcXM7Bqm3vWuaodEzj3MZ1P/kSAACQ/igV7cO7d32/z499X31Ib3qtDogdrhV9cPCWGNMCTLdJZP5bHUJkD+TShXmyJoov+vEF+5vKjUFNz6tUhmtFJGSo/xi3flpbpGKJJPaTKZwD5FR0ipytY2nHrBV/99ZO/cJtsVv/5tsqJyWyRU3mPj32yc09pCQGiJlIoXdRy51BucUXCrwlZ4b/yeqDuEt6o4/VL/ezmfFQFO1X1fehe18qprXVCBUBDYJ8yKpcxvb6ez8q12Pbz170/rzD1tsiK4H+cJwX0n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ZEB5GdoAboceds/UylBg7sryM46iou98ziIX/ZVfq83RmN23h3nnvvVfP/AH/l7VZ2cvbuA2COweVBsyvWR5e1BG7uR4XBXWeW1xTNfVjGqF3LK//FSO/XETEhgegX0lBfXTOb3iajwuy4tpD78qbQvrSzZ2evamSm5if9julXE/YHj0sK+gm3pnhbVv74q/U90QVEj3FdYauauvWryFdXbBfDeAziiLLqTAfbmimtXfVWW9zo/bKJeGtWwuWRjTA10k1Lfv2msH0A0V9gVUyV4T1pV11l9YuzsGtqu+FwCDosK+QO8jc5FzXxfzYnHMNe7RDqmwkAYYHhV2R6qs+w7Gx3lydVhftE9Ij1hEAwyPwO5oiLZDtuOmHYCPEdgdDRHY9+w9A7CDwO6geNs/xFt/2gkAzkBgdzDm1kXMUkMgeAR2B9GIQ7FpufuUPj8wBQR2B2NfGHLPU9RTTnAHBserrKN4gNDuqzq9djTwGve8WABTwausAy0OmQ3QFukr7O5V5Wp1Ji10YHisdDxBUyFakKKxO/1zqNV8fe0nrUpd4dnHsvkuFnes7IEpIbBLeXnogDYx0r8PGdC+h5b9sS+1vHFgqw1DOwS4jeRpk03uuBBVzlUY5/t9p6XmVUA99XESeeR630da4b9MZ8UJ54Mb4OsH0C5ZbXLOdzphVh7vpf6w/ln1avXv2sf64tCOnPu+TAfp/SpEs3w/+P4i2rCKcT7gdiiPPAphBZBCVAGdxHFroGrET4F7UWiXYT3kmODXh/m7gxH6pK1g7zmVAkxRskxnk9vIWJMeVWUYlYfkXkJ/7z+Pi6I9cm7fWD1rVcBtF4K+ROVFYYjQvnbfbgCXST6lCTvPX0HBqADTzb5VeQBuvRVRtFSSQ1vlli0EfW0/HtOrT8d5+4CHU9y5yQjcBy2RniiIFdxjpK9Lo3fPm/zdxeRct3pnAKAdgT0Rqoq/LeMisHVo7kvteLImugjpncFD0u/oIYDLENgTMy+nXVR1a+ZcI43b2i6Eat3EXp8fwDgQ2BNW3GxVFc0OBYAJvFIBwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMILABwAgCGwCMSHiggHCss53b5Dse0RA5F/9/roDf4xomaLUAAAAASUVORK5CYII=') !important;
+    background-size: cover !important;
+}
+
+.myDiv {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAkCAYAAAAQC8MVAAAACXBIWXMAAAsSAAALEgHS3X78AAAD2klEQVRYheWYP4gdRRzHPwkixijvAluliakUFN8dpLDaJJAqIDkSBBUhl0KwEHJnsmCXuyKBsBDeFYF0d1fFQILviljYeLdgY5UTtBDEF0GrLaIpQv6QCz/4js7t7L63+95GCP5gmd2Z38x89ze/v7Nre3ubF4VeagtnFKfTwCxwpDA0ADaAfp4l94KJDWhiyUZxauBWgQPB4E76C+jZMy7o3UFPM6C2+XcCehdYBo4C+/Is2QXMAGeAdaADXDAp6xQa09iSjeLUpHlaErsMPJAaHC6w2k/0gW+BS0BXc47kWXInWHgIjQU2itNFSck2XdJ7x2PZAuyopwv914A9+sktAa6tEo0NLIrTNwTObX5F75vSR5NikX9RAD8DvhFQk/C8xmpRY8lKT88Ct4BT6l7Ks2ToptLTDUl6zalQniVTAXMFjWNgc4XvtVFAjaSfzq0Z0O8NeBSnswFzBTUCqyPt6BiPqXs+YKwgAV7T6O9qa3uGppJ9T+1TB3oMnzlQ+5raDwOOCqoNVs7/uj5n1E4Skd5X+6bcYHtgvePe8vpeCbia0U/iPt02WGe183JTbYD93FtrJE0Ubv9r+l+Are3I21yrSbgdKEnpe/F+hzeI4nRKUapbmHsmz5Iyi78NvBr0VlATsD1lVZ1g5F8yoBY4fKOx75UoTs9bXNA38tUO6EKwUgnVBqvoMyV/a1L+rST6dOXa/PD7hfLdtwu8poK/AifzLPkx2LCEJsln7wjcQp4lPXbmuEX6BTinvq+AvcCnwM0mEXASsKYSXxcTaWVlvsTvecmP0+fNPEuKtdrzA0tYLcxXGJFLD1c9NWmUdLcClvDo/wQuAj97LClwSO9jA6WlUnxVYMyA9gNXK/geAjcmKccn0dnjwCfAR+q6D7yu9x+Ax5ZRGatcVqQxVwWvNAXeCKyMarHg9P+5D1CSY/XZI3mAdwRuWk+vMHddddtGsFkJNcln52T9brM/1A5U1sx6heTLAop8bF+AnAE+Af4GTti9gzxIO2BVzqzoc0EXGE5qXZXmzj1Zgn7fezfJH9bPumDxgX7CRa6zdWqxupJ1ifeaCwDSNwfwggujeZZ8DLyrfMDe3UVGT6F62cp1m6+1HOCRRWddsM6B7zguHe2SPg94/QPP5zp97OgkFgtr9CT9rk6wkkaC1QKmp3fLrnukr1vBxHKaq/AA7mJkaFSrI1mnS8Ms1qlDGWgHbnmI1bv+icG6BfrBiEgSP+j9mD9mx3w0z5Jh9wsObDDfp5F+NopTx7Cv4ghbIS+Lm6m6XRwabqM4fUsGZAbz3ICKvtQlSnnFDDwDPHpts95CgzoAAAAASUVORK5CYII=) !important;
+    background-size: cover !important;
+    position: absolute;
+    top: 22% !important;
+    right: 2em;
+    font-size: 27px;
+    width: 1em;
+    height: 1em;
+    transition: all 0.3s;
+}
+
+    .myDiv:hover {
+        cursor: pointer;
+        transform: scale(1.2);
+        opacity: 1;
+    }
+
+divs[role="form"][dir="ltr"] {
+    width: calc(100% - 0.5em);
+    background: #0c63aa;
+}
+
+
+.webchat__send-box__main > button {
+    margin-right: 1em !important;
+}
+
+.webchat__adaptive-card-renderer {
+    background: transparent !important;
+}
+
+    .webchat__adaptive-card-renderer .ac-textBlock p {
+        color: #133D8D;
+    }
+
+.ac-actionSet > button {
+    border-radius: 6px !important;
+    background-color: rgb(216, 217, 219) !important;
+    color: rgb(19, 61, 141) !important;
+    border-color: transparent !important;
+}
+
+
+.webchat__bubble__content {
+    background: transparent !important;
+    border-color: transparent !important;
+}
+
+.ac-selectable {
+    border-radius: 10px !important;
+    background-color: white !important;
+    padding-left: 15px !important;
+}
+
+    .ac-selectable:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        opacity: 1;
+        border-radius: 10px !important;
+    }
+
+.ac-image {
+    margin-top: 10px !important;
+    margin-left: 2px !important;
+    margin-right: 2px !important;
+    margin-bottom: 10px !important;
+}
+
+.ac-textBlock {
+    font-size: 15px !important;
+    background-color: white !important;
+    padding-left: 15px !important;
+    border-radius: 10px !important;
+    color: rgb(19, 61, 141) !important;
+    display: flex;
+    align-items: center;
+}
+
+.ac-pushButton[aria-pressed="true"] {
+    border-color: rgb(176, 188, 141) !important;
+    background-color: rgb(176, 188, 141) !important;
+    color: rgb(19, 61, 141) !important;
+    border-style: solid !important;
+    border-width: 3px !important;
+}
+
+iframe {
+    border-radius: 10px !important;
+}
+
+.markdown {
+    background-color: rgb(19, 61, 141) !important;
+}
+
+.plain {
+    background-color: rgb(176, 188, 34) !important;
+}
+
+.ac-container.ac-adaptiveCard {
+    padding: 3px !important;
+    width: 264px !important;
+}
+
+.ac-container {
+    justify-content: center !important;
+}
+
+
+.ac-horizontal-separator {
+    height: 0px !important;
+    border-bottom: 3px solid transparent !important;
+}
+
+.webchat__send-icon {
+    border-radius: 30px;
+    background-color: rgb(183, 191, 16);
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+    width: 1.5em;
+    height: 0.2em;
+    background-color: rgba(19, 61, 141);
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+.change .bar2 {
+    opacity: 0;
+}
+
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-7px, -4px);
+    transform: rotate(45deg) translate(-7px, -4px);
+}
+
+
+.menuoptions {
+    overflow: hidden;
+    background-color: white !important;
+    position: relative;
+}
+
+    .menuoptions a {
+        color: rgb(19, 61, 141) !important;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        display: block;
+    }
+
+        .menuoptions a:hover {
+            background-color: #c8c8c8;
+            color: black;
+        }
+
+.chat-app_head {
+    position: relative;
+    width: 360px;
+    height: 40px;
+    top: 4%;
+    right: -11%;
+}
+
+#chat-app p {
+    text-align: center;
+    margin-left: 0px;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+    font-size: 14px;
+    font-family: 'Calibri';
+}
+
+.webchat__basic-transcript__activity-indicator.webchat__basic-transcript__activity-indicator--focus {
+    border-style: none !important;
+}
+
+#chat-app a {
+    color: rgb(9, 157, 217);
+}
+
+.webchat__basic-transcript__filler {
+    flex: 0 1 0%;
+}
+
+#calification {
+    width: 100%;
+    height: 100px;
+    background-color: #133D8D;
+    display: none;
+    text-align: center;
+}
+
+#Bcalification {
+    width: 60px;
+    border-radius: 6px !important;
+    background-color: rgb(216, 217, 219) !important;
+    color: rgb(19, 61, 141) !important;
+    border-color: transparent !important;
+}
+
+#textCalification {
+    margin-left: 5px;
+    color: white;
+    font-size: 14px;
+    margin-bottom: 10px !important;
+    text-align: center;
+}
+#stack-top {
+    background: rgb(19 21 24) !important;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    margin: 0px;
+    opacity: 0.8;
+    font-family: sans-serif;
+    display: none;
+}
+
+#textCierreChat {
+    margin-left: 5px;
+    color: white;
+    font-size: 18px;
+    margin-bottom: 10px !important;
+    text-align: center;
+    position: absolute;
+    top: 213px;
+}
+
+  body .chat-app{
+    width:0 !important;
+  }
+
+  .chat-app.is-active {
+    height: auto !important;
+    width: auto !important;
+    max-width: 370px !important;
+  }

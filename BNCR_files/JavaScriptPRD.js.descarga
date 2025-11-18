@@ -1,0 +1,730 @@
+let isTimerPaused = false; // Bandera para controlar el temporizador de calificación
+let isChatInProgress = false; // Bandera para controlar si el chat con centro de contacto está activo
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    if (!window.LIVE_CHAT_UI) {
+
+        let chat = document.querySelector('#chat-app');
+
+        let toggles = chat.querySelectorAll('.toggle')
+
+        let close = chat.querySelector('.close')
+
+        toggles.forEach(toggle => {
+
+            toggle.addEventListener('click', () => {
+
+                chat.classList.add('is-active')
+
+
+
+                if (!window.SESSION_OPEN) {
+
+                    initChatWithGreat();
+
+                    window.SESSION_OPEN = true;
+
+                }
+
+                toggle.classList.add('hide')
+
+                close.classList.remove('hide')
+            })
+
+        })
+
+        close.addEventListener('click', () => {
+
+            chat.classList.remove('is-active')
+
+            toggles.forEach(toggle => {
+
+                toggle.classList.remove('hide')
+
+                close.classList.add('hide')
+
+            })
+
+        })
+
+        document.onkeydown = function (evt) {
+
+            evt = evt || window.event;
+
+            var isEscape = false;
+
+            if ("key" in evt) {
+
+                isEscape = (evt.key === "Escape" || evt.key === "Esc");
+
+            } else {
+
+                isEscape = (evt.keyCode === 27);
+
+            }
+
+            if (isEscape) {
+
+                chat.classList.remove('is-active')
+
+            }
+
+        };
+
+        window.LIVE_CHAT_UI = true
+
+        window.SESSION_OPEN = false
+
+    }
+
+});
+
+var initChatWithGreat = async function () {
+
+    setTimeout(myTimer, 120000);
+
+    let token = await getToken();
+
+    await buildMenu(JSON.parse(token.menu));
+
+    var isMobile = {
+
+        Android: function () {
+
+            return navigator.userAgent.match(/Android/i);
+
+        },
+
+        BlackBerry: function () {
+
+            return navigator.userAgent.match(/BlackBerry/i);
+
+        },
+
+        iOS: function () {
+
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+
+        },
+
+        Opera: function () {
+
+            return navigator.userAgent.match(/Opera Mini/i);
+
+        },
+
+        Windows: function () {
+
+            return navigator.userAgent.match(/IEMobile/i);
+
+        },
+
+        any: function () {
+
+            return isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows();
+
+        }
+
+    };
+
+    const store = window.WebChat.createStore({}, ({
+
+        dispatch
+
+    }) => next => action => {
+
+        if (action.type === 'DIRECT_LINE/CONNECT_FULFILLED') {
+
+            dispatch({
+
+                type: 'WEB_CHAT/SEND_EVENT',
+
+                payload: {
+
+                    name: 'webchat/join',
+
+                    value: {
+
+                        action: 'requestWelcomeDialog',
+
+                        mobile: isMobile.any(),
+                        u: token.tokendlUser,
+                        t: token.tokendl.token
+
+
+                    }
+
+                }
+
+            });
+
+        }
+
+        if (action.type === 'DIRECT_LINE/POST_ACTIVITY') {
+
+            action = window.simpleUpdateIn(
+
+                action,
+
+                ['payload', 'activity', 'channelData', 'CustomChannelId'],
+
+                () => 'channelIdWEBBNCR'
+
+            );
+
+        }
+
+        if (action.type === 'DIRECT_LINE/INCOMING_ACTIVITY') {
+
+
+
+            try {
+
+                const event = new Event('webchatincomingactivity');
+
+                event.data = action.payload.activity;
+
+                window.dispatchEvent(event);
+
+            } catch (er) { }
+
+        }
+
+        return next(action);
+
+    });
+
+    const styleOptions = {
+
+        botAvatarImage: 'https://bs0asistentev0prod.blob.core.windows.net/iconos-asistentebn/logo_c1.gif',
+
+        botAvatarBackgroundColor: 'white',
+
+        hideUploadButton: true,
+
+        botAvatarInitials: 'BF',
+
+        primaryFont: "'Arial', sans-serif, 'Comic Sans MS'",
+
+        bubbleBackground: '#133D8D',
+
+        bubbleBorderRadius: 15,
+
+        bubbleNubOffset: 0,
+
+        bubbleNubSize: 10,
+
+        bubbleTextColor: 'white',
+
+        bubbleFromUserBackground: '#B7BF10',
+
+        bubbleFromUserTextColor: '#1c3583',
+
+        bubbleFromUserBorderRadius: 15,
+
+        bubbleFromUserNubOffset: 0,
+
+        bubbleFromUserNubSize: 10,
+
+        sendBoxBackground: '#133D8D',
+
+        suggestedActionBorderRadius: '25px',
+
+        suggestedActionBackground: 'white',
+
+    };
+
+
+    wChat = window.WebChat.createDirectLine(token.tokendl);
+    window.WebChat.renderWebChat({
+
+        directLine: wChat,
+
+        store,
+
+        locale: 'es-CR',
+        selectVoice: (voices, activity) => voices.find(({ name }) => /MariaNeural/iu.test(name)),
+        styleOptions,
+
+        webSpeechPonyfillFactory: await createCognitiveServicesSpeechServicesPonyfillFactory({
+
+            credentials: token.tokensp,
+            speechRecognitionEndpointId: token.tokensp.speechRecognitionEndpointId,
+            textNormalization: 'itn'
+
+        })
+
+    }, document.getElementById('chat-app_content'));
+
+    document.querySelector('#chat-app_content > *').focus();
+
+    txtSend = document.getElementById('chat-app_content').querySelector('input[data-id="webchat-sendbox-input"]');
+
+    shade = document.querySelector('div[class="webchat__icon-button__shade"]');
+
+    if (shade) {
+
+        shade.className = '';
+
+    }
+
+    window.addEventListener('webchatincomingactivity', ({
+
+        data
+
+    }) => {
+
+        try {
+
+            if (data.type == 'event') {
+
+                if (data.name == 'locationRequestSucursales') {
+
+                    getLocation(1);
+
+                }
+
+                if (data.name == 'locationRequestCajeros') {
+
+                    getLocation(2);
+
+                }
+                if (data.name == 'locationRequestBnServicios') {
+
+                    getLocation(3);
+
+                }
+
+                if (data.name == 'duplicatedIntents') {
+
+                    sendByBox(data.value);
+
+                }
+                if (data.value == 'newWarning') {
+
+                    newWarning();
+
+                }
+                if (data.value === 'CierreCentroContacto') {
+                    // Marcar que el chat está en progreso
+                    isChatInProgress = false;
+                    isTimerPaused = false; // Pausar myTimer                    
+                    clearTimeout(timeoutWarning);
+                    setTimeout(myTimer, 120000);
+                }
+                if (data.value === 'centroAsistencia') {
+                    // Marcar que el chat está en progreso
+                    isChatInProgress = true;
+                    isTimerPaused = true; // Pausar myTimer
+                    fCalificacion(this);
+                    clearTimeout(timeoutClose);
+                    clearTimeout(timeoutWarning);
+                    setTimeout(myTimer, 120000);
+                }
+                if (data.name == 'newClose') {
+                    isChatInProgress = false;
+                    isTimerPaused = false; // Reactivar myTimer
+                    clearTimeout(timeoutWarning);
+                    wChat.end();
+					document.getElementById("textCierreChat").textContent = "La conversación ha finalizado. Si querés volver a comunicarte, refrescá la página. ¡Gracias por tu visita y hasta pronto!";
+                    document.getElementById("stack-top").style.display = "block";
+                }
+                if (data.name == 'disableButton') {
+                    document.querySelector('[title="Siguiente"]').remove();
+                    document.querySelectorAll('select').forEach(x => {
+                        x.disabled = true;
+                    })
+
+                }
+
+
+            }
+
+        } catch (er) { }
+
+    });
+
+
+    function myTimer() {
+
+        if (isTimerPaused || isChatInProgress) {
+            return;
+        }
+        document.getElementById("calification").style.display = "block";
+    }
+
+    function clickSendByBox() {
+
+        try {
+
+            let aSendBox = document.querySelector('#chat-app').querySelectorAll('.sendByBox')
+
+            aSendBox.forEach(ahref => {
+
+                ahref.addEventListener('click', () => {
+
+                    try {
+
+                        let intent = ahref.getAttribute('value');
+
+                        if (!intent) return;
+
+                        sendByBox(intent)
+
+                    } catch (e) { }
+
+                })
+
+            });
+
+        } catch (er) { }
+
+    }
+
+    clickSendByBox();
+
+    function sendByBox(intent) {
+
+        try {
+
+            store.dispatch({
+
+                type: 'WEB_CHAT/SET_SEND_BOX',
+
+                payload: {
+
+                    text: intent
+
+                }
+
+            });
+
+            let btnSend = document.querySelector('#chat-app').querySelector('.webchat__send-box-text-box__input');
+
+            if (btnSend) {
+
+                const event = new KeyboardEvent("keypress", {
+
+                    view: window,
+
+                    keyCode: 13,
+
+                    bubbles: true,
+
+                    cancelable: true
+
+                });
+
+                btnSend.dispatchEvent(event);
+
+            }
+
+        } catch (e) { }
+
+    }
+
+    function sendByEvent(data) {
+
+        store.dispatch({
+
+            type: 'WEB_CHAT/SEND_EVENT',
+
+            payload: {
+
+                name: data.name,
+
+                value: data.value
+
+            }
+
+        });
+
+    }
+
+    window.addEventListener('SEND_EVENT', ({
+
+        data
+
+    }) => {
+
+        try {
+
+            sendByEvent(data);
+
+        } catch (er) { }
+
+    });
+
+};
+
+async function buildMenu(data) {
+
+    try {
+
+        let item = '';
+
+        let menuOptions = document.querySelector('#menuoptions');
+
+        if (menuOptions) {
+
+            Object.entries(data).forEach(([key, valor]) => {
+
+                item += `<a href="#"  value="${valor.value}" class='sendByBox' onclick="topmenuItem(this)">${valor.text}</a>`;
+
+            });
+
+            menuOptions.insertAdjacentHTML("afterbegin", item);
+
+        }
+
+    } catch (e) { }
+
+}
+
+function topmenu(x) {
+
+    x.classList.toggle("change");
+
+    let menuoptions = document.querySelector('#menuoptions');
+
+    if (menuoptions) {
+
+        if (Array.from(menuoptions.classList).includes('hide')) {
+
+            menuoptions.classList.remove('hide')
+
+            menuoptions.classList.add('is-active');
+
+        } else {
+
+            menuoptions.classList.remove('is-active');
+
+            menuoptions.classList.add('hide')
+
+        }
+
+    }
+
+}
+
+function topmenuItem(x) {
+
+    const targetDiv = document.getElementById("topmenu");
+
+    targetDiv.classList.toggle("change");
+
+    let menuoptions = document.querySelector('#menuoptions');
+
+    menuoptions.classList.remove('is-active');
+
+    menuoptions.classList.add('hide');
+
+}
+
+function fCalificacion(data) {
+    document.getElementById("calification").style.display = "none";
+}
+
+let timeoutWarning;
+let timeoutClose;
+let countBubbles = 0;
+let wChat;
+// ===== CAMBIO ÚNICO: esperar a que exista #chat-app_content antes de observar =====
+var myElement = null;
+const config = { childList: true, subtree: true };
+const observer = new MutationObserver(function (mutationsList, observer) {
+    for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            contentChanged();
+        }
+    }
+});
+(function waitAndObserve() {
+    myElement = document.getElementById('chat-app_content');
+    if (myElement) {
+        observer.observe(myElement, config);
+    } else {
+        setTimeout(waitAndObserve, 200);
+    }
+})();
+// ================================================================================
+
+function contentChanged() {
+
+    if (isChatInProgress) {
+        return;
+    }
+
+    if (document.getElementsByClassName("webchat__bubble__content").length > countBubbles) {
+
+        clearTimeout(timeoutClose);
+        clearTimeout(timeoutWarning);
+        timeoutWarning = setTimeout(warningTimeOut, 180000);
+        countBubbles = document.getElementsByClassName("webchat__bubble__content").length;
+    }
+}
+function newWarning() {
+
+    if (isChatInProgress) {
+        return;
+    }
+    clearTimeout(timeoutWarning);
+    timeoutClose = setTimeout(closeTimeout, 180000);
+}
+function warningTimeOut() {
+    if (isChatInProgress) {
+        return;
+    }
+    SendMsg('Warning');
+    //timeoutClose = setTimeout(closeTimeout, 19000);
+}
+function closeTimeout() {
+    SendMsg('Close');
+
+}
+function SendMsg(msg) {
+
+    try {
+
+        let data = {};
+
+        data.name = msg;
+
+        sendEvent(data);
+
+    } catch (er) { }
+}
+
+async function getLocation(param) {
+
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
+
+    if (param == 1) {
+        navigator.geolocation.getCurrentPosition(locationSuccessSucursales, locationError, options);
+    }
+    if (param == 2) {
+        navigator.geolocation.getCurrentPosition(locationSuccessCajeros, locationError, options);
+    }
+    if (param == 3) {
+        navigator.geolocation.getCurrentPosition(LocationSuccessBnServicios, locationError, options);
+    }
+}
+
+function locationSuccessSucursales(pos) {
+
+    try {
+        let crd = pos.coords;
+        let gpsLocation = {};
+        gpsLocation.latitude = crd.latitude;
+        gpsLocation.longitude = crd.longitude;
+        let data = {};
+        data.name = 'LocationSucursales';
+        data.value = gpsLocation;
+        sendEventLocation(data);
+    } catch (er) { }
+}
+
+function locationSuccessCajeros(pos) {
+
+    try {
+        let crd = pos.coords;
+        let gpsLocation = {};
+        gpsLocation.latitude = crd.latitude;
+        gpsLocation.longitude = crd.longitude;
+        let data = {};
+        data.name = 'LocationCajeros';
+        data.value = gpsLocation;
+        sendEventLocation(data);
+    } catch (er) { }
+}
+function LocationSuccessBnServicios(pos) {
+
+    try {
+        let crd = pos.coords;
+        let gpsLocation = {};
+        gpsLocation.latitude = crd.latitude;
+        gpsLocation.longitude = crd.longitude;
+        let data = {};
+        data.name = 'LocationBnServicios';
+        data.value = gpsLocation;
+        sendEventLocation(data);
+    } catch (er) { }
+}
+
+function locationError(err) {
+
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+
+    let data = {};
+
+    data.name = 'ErrorLocation';
+
+    data.value = '';
+
+    sendEvent(data);
+
+}
+
+async function getToken() {
+
+    const res = await fetch('https://app-asistentevirtual-v1-0-0-bncr-as.bnenlinea.com/api/v1/token', {
+
+        method: 'POST',
+
+        headers: {
+
+            'Content-Type': 'application/json'
+
+        }
+
+    });
+
+    let token = {};
+    await res.json().then((data) => {
+
+        token = data;
+
+    });
+    return token;
+
+}
+
+function sendEvent(data) {
+
+    try {
+
+        const event = new Event('SEND_EVENT');
+
+        event.data = data;
+
+        window.dispatchEvent(event);
+
+    } catch (e) { }
+
+}
+
+function sendEventLocation(data) {
+    try {
+        if (wChat) {
+            wChat.postActivity({
+                type: 'event',
+                name: data.name,    // "LocationSucursales"
+                value: data.value,  // { latitude: ..., longitude: ... }
+                from: { id: 'user', name: 'Usuario' }
+
+            }).subscribe(
+                id => console.log(">>> Evento enviado a Bot:", id),
+                err => console.error(">>> Error enviando evento:", err)
+            );
+        } else {
+            alert("NO SE HA INICIALIZADO EL WEBCHAT AUN")
+        }
+    } catch (e) {
+        console.error(">>> Error en sendEvent:", e);
+    }
+}

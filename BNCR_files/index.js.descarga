@@ -1,0 +1,212 @@
+setTimeout(function(){ 
+  function string_to_slug (str) {
+    str = str.replace(/^\s+|\s+$/g, ''); // trim
+    str = str.toLowerCase();
+
+    // remove accents, swap ñ for n, etc
+    var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+    var to   = "aaaaeeeeiiiioooouuuunc------";
+    for (var i=0, l=from.length ; i<l ; i++) {
+      str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+    }
+
+    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+        .replace(/\s+/g, '-') // collapse whitespace and replace by -
+        .replace(/-+/g, '-'); // collapse dashes
+
+        return str;
+    }
+
+    function infocontent(param)
+    {
+        var contentViewTop = $(window).scrollTop();
+        var contentViewBottom = contentViewTop + $(window).height();
+
+        if ($(param).length) {
+          var scrolltop = $(param).offset().top;
+          var elementBottom = scrolltop + $(param).height();
+
+          return ((elementBottom <= contentViewBottom) && (scrolltop >= contentViewTop));
+        }
+
+    }
+
+      retrieveEntries();
+
+      /*EMPIEZA FUNCION*/
+      function retrieveEntries() {
+
+        /*EMPIEZA FUNCION*/
+        var settings = {
+          "url": "https://oce-oraclebncr.cec.ocp.oraclecloud.com/pxysvc/proxy/item-videos",
+          "method": "GET",
+          "timeout": 0,
+          "async" : false,
+        };
+
+
+  /////AJAX
+  $.ajax(settings).done(function (response) {
+    for (var i = 0; i < 200; i++) {
+      var element = response.items[i];
+
+    //VARIABLES
+    const videoUUID = element.fields.video__desktop.id;
+    const mobileUUID = element.fields.video__mobile.id;
+
+    const nombre = element.fields.nombre;
+    const video_desktop = element.fields.video__desktop;
+    const video_mobile = element.fields.video__mobile;
+
+    const fecha_de_iniciar = element.fields.fecha_de_inicio;
+    let fecha_inicial = fecha_de_iniciar.value;
+    let fecha_inicio = fecha_inicial.toString();
+    let fecha_de_inicio = fecha_inicio.replace("T06:00:00.000Z", "");
+    let fecha__inicio = fecha_de_inicio.replace("-", "/");
+    let fecha__de__inicio = fecha__inicio.replace("-", "/");
+
+
+    const fecha_de_final = element.fields.fecha_de_fin;
+    let fecha_final = fecha_de_final.value;
+    let fecha_fin = fecha_final.toString();
+    let fecha_de_fin = fecha_fin.replace("T06:00:00.000Z", "");
+    let fecha__fin = fecha_fin.replace("-", "/");
+    let fecha__de__fin = fecha__fin.replace("-", "/");
+    
+    const estatus = element.fields.estatus;
+
+    //// VALIDAR FECHA DE HOY
+    var today = new Date();
+    var day = today.getDate();
+    var month = today.getMonth() + 1;
+    var year = today.getFullYear();
+    var fechaActual = `${year}/${month}/${day}`;
+
+
+    const itemDOMobile = `<div id="video-${mobileUUID}-mobile" data-poster-url="" data-video-urls="${video_mobile}" data-autoplay="true" data-loop="true" data-wf-ignore="true" class="bg_video w-background-video w-background-video-atom"><video id="myVideoMobile" autoplay muted playsinline data-wf-ignore="true" data-object-fit="cover"><source src="${video_mobile}" data-wf-ignore="true"></video></div><a data-fancybox data-src="#video-${mobileUUID}-mobile" id="abrir-${mobileUUID}-mobile">Nuevo</a>`;
+    const itemDOM = `<div id="video-${videoUUID}" class="jumbotron jumbotron-fluid"> <video autoplay muted id="myVideo"> <source src="" data-src="${video_desktop}" type="video/mp4"> </video> </div><a data-fancybox data-src="#video-${videoUUID}" id="abrir-${videoUUID}">Nuevo</a>`;
+    //////COOKIE
+
+
+
+    ////POR FECHA
+    let cookie = localStorage.removeItem("visto");
+    console.log(cookie);
+
+    if (cookie == undefined) {
+    if (fechaActual < fecha__de__inicio) {
+        console.log('la fecha de inicio es superior a la fecha actual')
+    }
+    else if (fechaActual >= fecha__de__inicio && fechaActual < fecha__de__fin) {
+
+
+    ////// POR DISPOSITIVOS
+    let navegador = navigator.userAgent;
+    if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+      
+      $('#mobile').append(itemDOMobile);
+      setTimeout(function(){
+          document.getElementById(`abrir-${mobileUUID}-mobile`).click();
+          localStorage.setItem('visto', 'si');
+
+          /////////////////////////////////////
+          document.getElementById('myVideoMobile').addEventListener('ended',myHandler,false);
+          function myHandler(e) {
+            $('.fancybox-slide--html .fancybox-close-small').trigger('click');
+            console.log('cerrar');
+          }
+          /////////////////////////////////////
+
+      }, 1000)
+
+    } else {
+     
+      $('#videos').append(itemDOM);
+      setTimeout(function(){
+          document.getElementById(`abrir-${videoUUID}`).click();
+          localStorage.setItem('visto', 'si');
+
+          /////////////////////////////////////
+          document.getElementById('myVideo').addEventListener('ended',myHandler,false);
+          function myHandler(e) {
+            $('.fancybox-slide--html .fancybox-close-small').trigger('click');
+            console.log('cerrar');
+          }
+          /////////////////////////////////////
+
+      }, 1000)
+
+    }
+    }
+    else {
+    let navegador = navigator.userAgent;
+    if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+      
+      $('#mobile').append(itemDOMobile);
+      setTimeout(function(){
+          document.getElementById(`abrir-${mobileUUID}-mobile`).click();
+          localStorage.setItem('visto', 'si');
+
+          /////////////////////////////////////
+          document.getElementById('myVideoMobile').addEventListener('ended',myHandler,false);
+          function myHandler(e) {
+            $('.fancybox-slide--html .fancybox-close-small').trigger('click');
+            console.log('cerrar');
+          }
+          /////////////////////////////////////
+
+      }, 1000)
+
+    } else {
+     
+      $('#videos').append(itemDOM);
+      setTimeout(function(){
+          document.getElementById(`abrir-${videoUUID}`).click();
+          localStorage.setItem('visto', 'si');
+
+          /////////////////////////////////////
+          document.getElementById('myVideo').addEventListener('ended',myHandler,false);
+          function myHandler(e) {
+            $('.fancybox-slide--html .fancybox-close-small').trigger('click');
+            console.log('cerrar');
+          }
+          /////////////////////////////////////
+
+      }, 1000)
+
+    }
+    }
+
+}
+
+
+
+}
+});
+/*TERMINA FUNCION*/
+}
+}, 1000);  
+
+
+setTimeout(function(){
+function deferVideo() {
+    //defer html5 video loading
+  $("video source").each(function() {
+    var sourceFile = $(this).attr("data-src");
+    $(this).attr("src", sourceFile);
+    var video = this.parentElement;
+    video.load();
+    // uncomment if video is not autoplay
+    //video.play();
+  });
+
+}
+window.onload = deferVideo;
+}, 1000);
+
+
+
+
+
+
+
